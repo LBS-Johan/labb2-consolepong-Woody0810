@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
@@ -12,6 +13,11 @@ namespace Labb2_ConsolePong
         int width;
         int height;
 
+        Paddel player1 = new Paddel(115, 5, 5);
+        Ball boll = new Ball(1, 1, 1, 1);
+        Paddel player2 = new Paddel(1, 5, 5);
+        
+
         public void StartGame()
         {
             // Setup konsol-fönstret
@@ -22,27 +28,40 @@ namespace Labb2_ConsolePong
 
         }
 
+        
+
         public bool Run()
         {
+
+            
             //Töm hela skärmen i början av varje uppdatering.
             Console.Clear();
 
+            
+            boll.DrawBall();
+            boll.MoveBall();
+            boll.CheckCollisions(player1,player2,width,height);
+            player1.DrawPaddel();
+            player2.DrawPaddel();
+
+
+
             if (Input.IsPressed(ConsoleKey.UpArrow))
             {
-                //Flytta spelare 1 uppåt
+                player1.MovePaddel(-1);
             }
             if (Input.IsPressed(ConsoleKey.DownArrow))
             {
-                //Flytta spelare 1 nedåt
+                player1.MovePaddel(1);
             }
 
             if (Input.IsPressed(ConsoleKey.W))
             {
-                //Flytta spelare 2 uppåt
+                player2.MovePaddel(-1);
             }
             if (Input.IsPressed(ConsoleKey.S))
             {
-                //Flytta spelare 2 nedåt
+                player2.MovePaddel(1);
             }
 
 
