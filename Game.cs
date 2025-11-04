@@ -21,8 +21,7 @@ namespace Labb2_ConsolePong
         public void StartGame()
         {
             // Setup konsol-fönstret
-            width = Console.WindowWidth;
-            height = Console.WindowHeight;
+            
             Console.CursorVisible = false;
 
 
@@ -37,13 +36,16 @@ namespace Labb2_ConsolePong
             //Töm hela skärmen i början av varje uppdatering.
             Console.Clear();
 
-            
+            width = Console.WindowWidth;
+            height = Console.WindowHeight;
+
             boll.DrawBall();
             boll.MoveBall();
             boll.CheckCollisions(player1,player2,width,height);
             player1.DrawPaddel();
             player2.DrawPaddel();
-
+            boll.returnball();
+            boll.drawscore();
 
 
             if (Input.IsPressed(ConsoleKey.UpArrow))
